@@ -65,8 +65,19 @@ function mergeObjects(objects) {
  *    removeProperties({name: 'John', age: 30, city: 'New York'}, ['age']) => {name: 'John', city: 'New York'}
  *
  */
-function removeProperties(/* obj, keys */) {
-  throw new Error('Not implemented');
+function removeProperties(obj, keys) {
+  const res = { ...obj };
+  const entries = Object.entries(obj);
+  for (let j = 0; j < entries.length; j += 1) {
+    for (let i = 0; i < keys.length; i += 1) {
+      const key = entries[j][0];
+      if (key === keys[i]) {
+        delete res[keys[i]];
+      }
+    }
+  }
+
+  return res;
 }
 
 /**
